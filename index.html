@@ -6,15 +6,6 @@
   <title>IT SPEAK – Home</title>
   <link rel="icon" type="image/png" href="channel_logo.png">
   <style>
-    @font-face {
-      font-family: 'BasheqVintageDemoVersionRegular';
-      src: url('BasheqVintageDemoVersionRegular-ov13x.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'HelloKetta';
-      src: url('HelloKetta-d99oX.ttf') format('truetype');
-    }
-
     :root {
       --bg: #1e1e1e;
       --muted: #cccccc;
@@ -22,21 +13,11 @@
       --panel: rgba(0, 0, 0, 0.35);
       --card-grad: linear-gradient(135deg,#2d2d2d 0%, #141414 100%);
     }
-
-    body.light {
-      --bg:#ffffff;
-      --muted:#222222;
-      --panel:rgba(255,255,255,0.65);
-      --card-grad:linear-gradient(135deg,#fff 0%,#f5f5f5 100%);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    body.light { --bg:#ffffff; --muted:#222222; --panel:rgba(255,255,255,0.65); --card-grad:linear-gradient(135deg,#fff 0%,#f5f5f5 100%);}
+    *{box-sizing:border-box}
     body {
       margin:0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif; /* restored font */
       background:var(--bg);
       color:var(--muted);
       -webkit-font-smoothing:antialiased;
@@ -44,163 +25,61 @@
       transition:background .3s ease, color .3s ease;
       overflow-x:hidden;
     }
+    header{display:flex;align-items:center;justify-content:space-between;background:#000;padding:10px 20px}
+    body.light header{background:#f5f5f5}
+    header img{height:50px;display:block}
+    nav a{color:var(--accent);margin-left:18px;text-decoration:none;font-weight:600}
+    .hero{background:linear-gradient(45deg,#f44336,#ff5722);padding:60px 20px;text-align:center;color:#fff;font-family:Arial,Helvetica,sans-serif}
+    .hero h1{font-size:3rem;margin:0 0 8px;font-weight:700;letter-spacing:normal}
+    .hero p{margin:0;opacity:.95;font-size:1.25rem}
+    .subscriber-section{padding:40px 20px;text-align:center}
+    .subscriber-panel{display:inline-flex;flex-direction:column;align-items:center;gap:6px;background:var(--panel);padding:26px 36px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    .subscriber-count{font-size:3.5rem;font-weight:800;color:var(--accent);line-height:1;text-align:center;letter-spacing:-.02em;min-width:10ch}
+    @keyframes popScale{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+    .subscriber-count.animate{animation:popScale .4s ease-out}
+    .subscriber-label{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#ddd;opacity:.85;margin-bottom:4px}
+    .subnote{color:#aaa;font-size:.85rem;margin:0;opacity:.9}
+    footer{margin-top:40px;background:#111;text-align:center;padding:20px;color:#666}
+    body.light footer{background:#f0f0f0;color:#333}
+    footer a{color:#ff5722;text-decoration:none}
 
-    header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      background:#000;
-      padding:10px 20px;
-    }
+    /* giveaway */
+    .giveaway-wrap { max-width:980px; margin:26px auto; display:grid; grid-template-columns:320px 1fr; gap:20px; align-items:start; padding:20px; }
+    .give-card { background:var(--card-grad); border-radius:14px; padding:18px; box-shadow:0 12px 40px rgba(0,0,0,0.45); color:var(--muted); display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center; }
+    .mouse-art { width:220px; height:220px; display:flex; align-items:center; justify-content:center; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12)); padding:8px; }
+    .give-title { font-size:1.3rem; font-weight:700; letter-spacing:0.04em; margin:6px 0; color:#fff; }
+    .give-sub { font-size:0.95rem; color:#ddd; margin-bottom:6px; }
+    .need-count { background: rgba(0,0,0,0.35); padding:8px 12px; border-radius:999px; font-weight:700; color:var(--accent); box-shadow: inset 0 -2px 6px rgba(0,0,0,0.3); }
+    .give-info { padding:18px; border-radius:12px; background: rgba(0,0,0,0.25); color:#eee; font-size:0.95rem; line-height:1.4; }
+    .countdown { display:flex; gap:10px; justify-content:center; margin-top:8px; }
+    .countdown .col { min-width:68px; background: rgba(0,0,0,0.45); padding:8px; border-radius:8px; font-weight:700; }
+    .countdown .label { display:block; font-size:0.7rem; color:#ddd; font-weight:600; text-transform:uppercase; margin-top:6px; }
 
-    body.light header {
-      background:#f5f5f5;
-    }
+    .form-card { background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.25)); border-radius:14px; padding:18px; color:var(--muted); box-shadow:0 12px 40px rgba(0,0,0,0.35); }
+    .form-card h3 { margin:0 0 8px; color:#fff; }
+    .form-row { display:flex; gap:10px; margin-bottom:10px; }
+    .form-row .field { flex:1; display:flex; flex-direction:column; }
+    label { font-size:0.85rem; margin-bottom:6px; color:#ddd; }
+    input[type="text"], input[type="email"], textarea, input[type="file"] { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:10px; border-radius:8px; color:var(--muted); font-size:0.95rem; }
+    textarea { min-height:96px; resize:vertical; }
+    .small { font-size:0.85rem; color:#bbb; margin-top:6px; }
+    .submit-row { display:flex; gap:12px; align-items:center; margin-top:12px; }
+    button.primary { background: linear-gradient(90deg,var(--accent), #ff6a3d); border:none; padding:10px 16px; border-radius:10px; font-weight:700; color:#fff; cursor:pointer; box-shadow:0 8px 20px rgba(255,61,0,0.14); }
+    button.primary[disabled] { opacity:0.45; cursor:not-allowed; }
+    .muted { color:#999; font-size:0.9rem; }
+    .alert { padding:10px 12px; border-radius:10px; background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35)); border:1px solid rgba(255,255,255,0.03); color:#fff; margin-top:10px; }
 
-    header img {
-      height:50px;
-      display:block;
-    }
+    @media (max-width:880px) { .giveaway-wrap { grid-template-columns:1fr; padding:14px; } .mouse-art { width:180px; height:180px; } }
+    #confettiCanvas { position: fixed; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none; opacity: 0; transition: opacity 800ms ease; }
 
-    nav a {
-      color:var(--accent);
-      margin-left:18px;
-      text-decoration:none;
-      font-weight:600;
-    }
-
-    .hero {
-      background:linear-gradient(45deg,#f44336,#ff5722);
-      padding:60px 20px;
-      text-align:center;
-      color:#fff;
-      font-family:Arial,Helvetica,sans-serif;
-    }
-
-    .hero h1 {
-      font-size:4rem;
-      margin:0 0 8px;
-      font-weight:700;
-    }
-
-    .hero h2 {
-      margin:0;
-      opacity:.95;
-      font-size:3rem;
-    }
-
-    footer {
-      margin-top:40px;
-      background:#111;
-      text-align:center;
-      padding:20px;
-      color:#666;
-    }
-
-    body.light footer {
-      background:#f0f0f0;
-      color:#333;
-    }
-
-    footer a {
-      color:#ff5722;
-      text-decoration:none;
-    }
-
-    h1 {
-      font-family: 'BasheqVintageDemoVersionRegular', sans-serif;
-      font-size: 65px;
-    }
-
-    h2 {
-      font-family: 'HelloKetta', sans-serif;
-      font-size: 70px;
-    }
-
-    @keyframes countUp {
-      from { opacity: 0.2; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    #subscriber-count {
-      transition: all 0.5s ease-in-out;
-      animation: countUp 0.4s ease-out;
-    }
-
-    .loader {
-      border: 6px solid rgba(255,255,255,0.1);
-      border-top: 6px solid var(--accent);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .error-message {
-      color: #ff4c4c;
-      margin-top: 10px;
-      font-size: 14px;
-      display: none;
-    }
-	
-	/* Hide hamburger button by default */
-    .hamburger {
-      display: none;
-      font-size: 28px;
-      background: none;
-      color: var(--accent);
-      border: none;
-      cursor: pointer;
-    }
-
-    /* Hide nav on mobile by default */
-    @media (max-width: 768px) {
-      #mobile-menu.hidden {
-        display: none;
-      }
-    }
-
-    /* Show hamburger and toggle nav on mobile */
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-
-      nav {
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background-color: #000;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        z-index: 999;
-      }
-
-      body.light nav {
-        background-color: #f5f5f5;
-      }
-
-      nav a {
-        margin-left: 0;
-      }
-    }
   </style>
+
+  
 </head>
 <body>
   <header>
     <img src="channel_logo.png" alt="IT SPEAK Logo">
-    <button id="menu-toggle" class="hamburger" aria-label="Toggle menu">☰</button>
-    <nav id="mobile-menu">
+    <nav>
       <a href="index.html">Home</a>
       <a href="shorts.html">Shorts</a>
       <a href="videos.html">Videos</a>
@@ -212,224 +91,544 @@
 
   <div class="hero">
     <h1>Welcome to IT SPEAK</h1>
-    <h2>Your Hub For Insightful Tech Videos & Shorts</h2>
+    <p>Your Hub For Insightful Tech Videos & Shorts</p>
   </div>
 
-  <!-- Live Subscriber Count Box -->
-  <div id="subscriber-box" style="text-align: center; margin: 40px auto; max-width: 400px;">
-    <h2 style="color: var(--accent); margin-bottom: 10px;">Live Subscriber Count</h2>
-    <div style="background: var(--card-grad); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-      <div id="loader" class="loader"></div>
-      <div id="subscriber-count" style="font-size: 64px; font-weight: bold; display: none;">0</div>
-      <div style="font-size: 18px; color: var(--muted); margin-top: 8px;">SUBSCRIBERS</div>
-      <div id="error" class="error-message">⚠ Unable to load subscriber count. Check your connection or API key.</div>
-    </div>
-  </div>
-
-  <!-- 🎁 Mystery Mouse Giveaway Section -->
-  <div style="max-width: 1000px; margin: 60px auto; display: flex; flex-wrap: wrap; gap: 30px; background: var(--panel); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-
-    <!-- Left Column -->
-    <div style="flex: 1; min-width: 280px; text-align: center;">
-      <img src="mystery_mouse.png" alt="Mystery Mouse" style="width: 120px; margin-bottom: 20px;" />
-      <h2 style="font-family: 'BasheqVintageDemoVersionRegular'; font-size: 26px; color: var(--muted); margin-bottom: 10px;">Mystery Mouse Giveaway</h2>
-      <p style="font-size: 16px; color: var(--muted); line-height: 1.5;">Hit <strong style="color: var(--accent);">100 subscribers</strong> to officially activate and start the 2-week countdown.<br>Sign-ups are open now.</p>
-
-      <div id="subs-to-go-box" style="margin: 20px auto 10px; background: #111; color: var(--accent); font-weight: bold; padding: 12px 20px; border-radius: 40px; width: fit-content;">
-        <span id="subs-to-go">Loading...</span>
-      </div>
-
-      <div style="font-size: 14px; color: var(--muted);">Subscribers needed: <span id="subs-needed">--</span></div>
-
-      <div id="giveaway-timer" style="margin-top: 20px; font-size: 14px; color: var(--accent); display: none;">
-        Giveaway ends in: <span id="timer"></span>
-      </div>
-
-      <div id="giveaway-ended-message" style="margin-top: 20px; font-size: 14px; color: var(--muted); display: none;">
-        🎉 The giveaway has ended! The winner will be announced soon on this website and in an upcoming YouTube video.
+  <section class="subscriber-section" aria-labelledby="sub-title">
+    <h2 id="sub-title">Live Subscriber Count</h2>
+    <div class="subscriber-panel" role="status" aria-live="polite" aria-atomic="true">
+      <div id="subCount" class="subscriber-count">Loading…</div>
+      <div class="subscriber-meta">
+        <div class="subscriber-label">Subscribers</div>
+        <div class="subnote">Updated every 10 seconds • Smooth live animation</div>
       </div>
     </div>
+  </section>
 
-    <!-- Right Column (Form) -->
-    <div style="flex: 1; min-width: 280px;">
-      <h3 style="color: var(--muted); margin-bottom: 10px;">Sign up to enter</h3>
-      <p style="font-size: 14px; color: var(--muted); margin-bottom: 20px;">Form is <strong style="color: green;">enabled</strong>. All fields are required to enter.</p>
+  <!-- GIVEAWAY SECTION -->
+  <section aria-labelledby="give-title" class="giveaway-wrap" role="region">
+    <div class="give-card" aria-hidden="false">
+      <div class="mouse-art" title="Mystery Mouse">
+        <!-- Desktop mouse silhouette with question mark -->
+        <svg width="160" height="160" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mystery Mouse image">
+          <g fill="none" stroke="#bdbdbd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M100 18c28 0 50 22 50 50v34c0 28-22 50-50 50s-50-22-50-50V68c0-28 22-50 50-50z" fill="#eee" stroke="#cfcfcf"/>
+            <line x1="100" y1="45" x2="100" y2="78" stroke="#9a9a9a" stroke-width="3"/>
+          </g>
+          <text x="50%" y="58%" text-anchor="middle" font-size="56" font-weight="700" fill="#000" dy=".25em">?</text>
+        </svg>
+      </div>
 
-      <form action="https://formspree.io/f/xkgzpjla" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
-        <label for="emailInput" style="color: var(--muted); font-weight: 600;">Email</label>
-        <div style="display: flex; gap: 10px;">
-          <input id="emailInput" name="email" type="email" placeholder="you@example.com" required style="flex: 1; padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;" />
+      <div class="give-title" id="give-title">Mystery Mouse Giveaway</div>
+      <div class="give-sub">Hit <strong>100 subscribers</strong> to officially activate and start the 2-week countdown. Sign-ups are open now.</div>
+
+      <div class="need-count" id="needCount" aria-live="polite">Checking…</div>
+
+      <div class="give-info" id="give-info">
+        <div id="countdownTo100" class="small" style="margin-top:8px;">Subscribers needed: <strong id="neededNumber">—</strong></div>
+
+        <div id="activeCountdown" style="display:none; margin-top:10px;">
+          <div class="muted">Giveaway ends in:</div>
+          <div class="countdown" aria-live="polite">
+            <div class="col"><div id="cdDays">0</div><span class="label">Days</span></div>
+            <div class="col"><div id="cdHours">00</div><span class="label">Hours</span></div>
+            <div class="col"><div id="cdMinutes">00</div><span class="label">Minutes</span></div>
+            <div class="col"><div id="cdSeconds">00</div><span class="label">Seconds</span></div>
+          </div>
         </div>
 
-        <label for="ytHandle" style="color: var(--muted); font-weight: 600;">YouTube handle</label>
-        <input id="ytHandle" name="youtube_handle" type="text" placeholder="@yourchannel" required style="padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;" />
-        <small style="color: var(--muted); margin-top: -8px;">Required — used for verification & records.</small>
+        <div id="overMessage" style="display:none;" class="alert">
+          The Mystery Mouse Giveaway has ended — thank you to everyone who entered! The winner will be announced here on the website and in an upcoming video. Stay tuned!
+        </div>
+      </div>
+    </div>
 
-        <label for="why" style="color: var(--muted); font-weight: 600;">Why do you want to win?</label>
-        <textarea id="why" name="reason" placeholder="Tell us in a sentence..." rows="3" style="padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;"></textarea>
+    <div class="form-card" aria-labelledby="form-title">
+      <h3 id="form-title">Sign up to enter</h3>
+      <p class="muted" id="formStatus">Form is <strong>enabled</strong>. All fields are required to enter.</p>
 
-        <button type="button" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Verify Subscription</button>
-        <small style="color: var(--muted); margin-top: -8px;">Click to verify your subscription to my channel. If you don't verify, you will not be allowed to enter this giveaway.</small>
+      <form id="giveForm" enctype="multipart/form-data" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
 
-        <button type="submit" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Enter Giveaway</button>
-        <small style="color: var(--muted);">Your submission will be uploaded on to a Secure Database.</small>
+        <div class="form-row">
+          <div class="field">
+            <label for="ytHandle">YouTube handle</label>
+            <input id="ytHandle" type="text" name="ytHandle" placeholder="@yourchannel" required>
+            <div class="small">Required — used for verification & records.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="why">Why do you want to win?</label>
+            <textarea id="why" name="why" placeholder="Tell us in a sentence..." required></textarea>
+          </div>
+        </div>
+                      
+
+        <div style="margin-top:10px;">
+          <button id="verifyBtn" type="button" class="primary">Verify Subscription (Google Sign-in)</button>
+          <div class="small" id="verifyNote">Click to verify your subscription to <?!-- channel name can be inserted --> your channel. If you don't verify, you may still enter but will be marked unverified.</div>
+        </div>
+
+        <div class="submit-row">
+          <button id="submitBtn" class="primary" type="submit">Enter Giveaway</button>
+          <div class="muted" id="formNote">Your submission will be uploaded securely to Firestore & Storage.</div>
+        </div>
+
+        <div id="formMessage" style="margin-top:10px;"></div>
       </form>
     </div>
-  </div>
+  </section>
+
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
   <footer>
     <p>&copy; 2025 IT SPEAK. All rights reserved.</p>
     <p>Follow us on <a href="https://www.youtube.com/channel/UC5kX1Pt3qBdjmykufvqsWZw">YouTube</a></p>
   </footer>
 
-  <script>
+  <!-- Firebase SDKs (modular) -->
+  <script type="module">
+    /************** CONFIG - REPLACE THESE VALUES **************/
+    const firebaseConfig = {
+      apiKey: "REPLACE_WITH_FIREBASE_APIKEY",
+      authDomain: "REPLACE_WITH_FIREBASE_AUTHDOMAIN",
+      projectId: "REPLACE_WITH_FIREBASE_PROJECTID",
+      storageBucket: "REPLACE_WITH_FIREBASE_STORAGEBUCKET",
+      messagingSenderId: "REPLACE_WITH_FIREBASE_MSG_SENDER",
+      appId: "REPLACE_WITH_FIREBASE_APPID"
+    };
+
+    const RECAPTCHA_SITE_KEY = "REPLACE_WITH_RECAPTCHA_SITE_KEY"; // also replace in the widget above
+    const RECAPTCHA_VERIFY_FUNCTION_REGION = "us-central1"; // region where you will deploy Cloud Function
+    const RECAPTCHA_FIREBASE_FUNCTION_NAME = "verifyRecaptchaToken"; // name of callable function to verify token
+    const YOUTUBE_OAUTH_CLIENT_ID = "REPLACE_WITH_YOUR_OAUTH_CLIENT_ID.apps.googleusercontent.com";
+    const YOUTUBE_CHANNEL_ID = "UC5kX1Pt3qBdjmykufvqsWZw";  // <-- Replace this with your actual channel ID // your channel id
+    /*********************************************************/
+
+    // imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js";
+    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-functions.js";
+
+    // Init firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    const functions = getFunctions(app, RECAPTCHA_VERIFY_FUNCTION_REGION);
+
+    // anonymous auth (helps with security rules)
+    signInAnonymously(auth).catch(err => {
+      console.warn('Anonymous sign-in failed:', err);
+    });
+
+    // UI refs
+    const subCountElem = document.getElementById('subCount');
+    let currentNumeric = null;
+    const refreshIntervalMs = 10000;
+    const animationDurationMs = 800;
+
+    // Subscriber fetch (YouTube Data API key)
+    const API_KEY = "AIzaSyDsYoWGvOWkuKdbuPBWHPRzZQ8V_Kru1eU";  // <-- Replace this with your actual YouTube API key
+    async function fetchSubscriberCount() {
+      try {
+        const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YOUTUBE_CHANNEL_ID}&key=${API_KEY}`;
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error('Network response not ok: ' + res.status);
+        const json = await res.json();
+        const raw = json.items && json.items[0] && json.items[0].statistics && json.items[0].statistics.subscriberCount;
+        const parsed = parseInt(raw || "0", 10);
+        if (Number.isNaN(parsed)) throw new Error('Subscriber count not a number');
+
+        if (currentNumeric === null) {
+          currentNumeric = parsed;
+          subCountElem.textContent = parsed.toLocaleString();
+          subCountElem.classList.remove('animate'); void subCountElem.offsetWidth; subCountElem.classList.add('animate');
+          handleSubscriberChange(parsed);
+          return;
+        }
+        if (parsed !== currentNumeric) {
+          animateNumber(currentNumeric, parsed, animationDurationMs);
+          handleSubscriberChange(parsed);
+        }
+      } catch (err) {
+        console.error("Error fetching subscriber count:", err);
+        if (currentNumeric === null) subCountElem.textContent = "Error";
+      }
+    }
+    fetchSubscriberCount();
+    window.__yt_interval = setInterval(fetchSubscriberCount, refreshIntervalMs);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        clearInterval(window.__yt_interval);
+      } else {
+        fetchSubscriberCount();
+        clearInterval(window.__yt_interval);
+        window.__yt_interval = setInterval(fetchSubscriberCount, refreshIntervalMs);
+      }
+    });
+
+    // simple number animation
+    function animateNumber(start, end, duration) {
+      const startTime = performance.now();
+      const range = end - start;
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function step(now) {
+        const elapsed = now - startTime;
+        const t = Math.min(1, elapsed / duration);
+        const eased = easeOutCubic(t);
+        const value = Math.round(start + range * eased);
+        subCountElem.textContent = value.toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+        else { currentNumeric = end; subCountElem.textContent = end.toLocaleString(); subCountElem.classList.remove('animate'); void subCountElem.offsetWidth; subCountElem.classList.add('animate'); }
+      }
+      requestAnimationFrame(step);
+    }
+
+    /* ---------- Giveaway activation & confetti ---------- */
+    const TARGET = 100;
+    const neededNumberEl = document.getElementById('neededNumber');
+    const needCountEl = document.getElementById('needCount');
+    const activeCountdownEl = document.getElementById('activeCountdown');
+    const overMessageEl = document.getElementById('overMessage');
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMinutes = document.getElementById('cdMinutes');
+    const cdSeconds = document.getElementById('cdSeconds');
+
+    const LS_KEY_END_AT = 'mysteryGiveaway_endAt';
+    let giveawayActive = false;
+    let giveawayEnded = false;
+    let giveawayEndAt = null;
+    let countdownInterval = null;
+
+    function updateNeededDisplay(currentCount) {
+      const need = Math.max(0, TARGET - currentCount);
+      neededNumberEl.textContent = need.toString();
+      if (need > 0) needCountEl.textContent = `${need} subscriber${need>1 ? 's' : ''} to unlock the giveaway`;
+      else needCountEl.textContent = `100+ subscribers — giveaway unlocked!`;
+    }
+
+    function persistEndAt(ts) { localStorage.setItem(LS_KEY_END_AT, String(ts)); }
+    function readPersistedEnd() { const s = localStorage.getItem(LS_KEY_END_AT); if(!s) return null; const n = Number(s); return Number.isFinite(n) ? n : null; }
+
+    function activateGiveawayIfNeeded() {
+      const persisted = readPersistedEnd();
+      if (persisted && persisted > Date.now()) {
+        giveawayActive = true; giveawayEndAt = persisted; onGiveawayActivated();
+      } else if (persisted && persisted <= Date.now()) {
+        giveawayActive = false; giveawayEnded = true; giveawayEndAt = persisted; onGiveawayEnded();
+      }
+    }
+
+    function handleSubscriberChange(newCount) {
+      updateNeededDisplay(newCount);
+      if (giveawayEnded) return;
+      if (giveawayActive) return;
+      if (newCount >= TARGET) {
+        const now = Date.now();
+        const twoWeeksMs = 1000 * 60 * 60 * 24 * 14;
+        giveawayEndAt = now + twoWeeksMs;
+        persistEndAt(giveawayEndAt);
+        giveawayActive = true;
+        onGiveawayActivated();
+      } else {
+        if (TARGET - newCount <= 5) needCountEl.style.boxShadow = "0 6px 24px rgba(255,61,0,0.12)";
+        else needCountEl.style.boxShadow = "";
+      }
+    }
+
+    // confetti (only plays once per page open when giveaway active)
+    let confettiPlayedThisPage = false;
+    function playConfettiOnce({ durationMs = 4000, particleCount = 120 } = {}) {
+      if (confettiPlayedThisPage) return;
+      confettiPlayedThisPage = true;
+      const canvas = document.getElementById('confettiCanvas');
+      if (!canvas) return;
+      canvas.style.display = 'block';
+      canvas.style.opacity = '1';
+      const ctx = canvas.getContext('2d');
+      const DPR = window.devicePixelRatio || 1;
+      function resize() {
+        canvas.width = window.innerWidth * DPR;
+        canvas.height = window.innerHeight * DPR;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      const colors = ['#ff3d00','#ff6a00','#ffd166','#a7ff83','#66d9ff','#c792ea'];
+      function rand(min,max){return Math.random()*(max-min)+min}
+      const particles = [];
+      for(let i=0;i<particleCount;i++){
+        particles.push({
+          x: rand(0,window.innerWidth), y: rand(-50,window.innerHeight*0.5),
+          vx: rand(-2.5,2.5), vy: rand(1.0,5.0), size: rand(6,14), rot: rand(0,Math.PI*2),
+          velRot: rand(-0.12,0.12), color: colors[Math.floor(rand(0,colors.length))], tilt: rand(-0.5,0.5)
+        });
+      }
+      let rafId=null, startTime=null;
+      function step(ts){
+        if(!startTime) startTime=ts;
+        const elapsed=ts-startTime;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(let p of particles){
+          p.x+=p.vx; p.y+=p.vy; p.vy*=1.002; p.rot+=p.velRot;
+          p.tilt+=Math.sin((p.x+p.y+elapsed*0.002)*0.01)*0.02;
+          ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.globalAlpha=Math.max(0,1-(elapsed/durationMs)*1.1);
+          ctx.fillStyle=p.color; ctx.fillRect(-p.size/2+p.tilt*4,-p.size/4,p.size,p.size*0.6);
+          ctx.restore();
+        }
+        if(elapsed < durationMs) rafId=requestAnimationFrame(step);
+        else { cancelAnimationFrame(rafId); canvas.style.opacity='0'; setTimeout(()=>{ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; window.removeEventListener('resize', resize);},820);}
+      }
+      rafId=requestAnimationFrame(step);
+    }
+
+    function onGiveawayActivated() {
+      document.getElementById('formStatus').innerHTML = 'Form is <strong>enabled</strong> — giveaway active!';
+      activeCountdownEl.style.display = '';
+      overMessageEl.style.display = 'none';
+      if (countdownInterval) clearInterval(countdownInterval);
+      countdownInterval = setInterval(updateActiveCountdown, 1000);
+      updateActiveCountdown();
+      playConfettiOnce(); // only once per page open
+    }
+
+    function onGiveawayEnded() {
+      document.getElementById('formStatus').innerHTML = 'Giveaway has <strong>ended</strong>.';
+      activeCountdownEl.style.display = 'none';
+      overMessageEl.style.display = '';
+      if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+    }
+
+    function updateActiveCountdown() {
+      if (!giveawayEndAt) return;
+      const now = Date.now();
+      const diff = giveawayEndAt - now;
+      if (diff <= 0) { giveawayActive=false; giveawayEnded=true; giveawayEndAt=readPersistedEnd(); onGiveawayEnded(); return; }
+      const s = Math.floor(diff / 1000);
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const minutes = Math.floor((s % 3600) / 60);
+      const seconds = s % 60;
+      cdDays.textContent = days;
+      cdHours.textContent = String(hours).padStart(2,'0');
+      cdMinutes.textContent = String(minutes).padStart(2,'0');
+      cdSeconds.textContent = String(seconds).padStart(2,'0');
+    }
+
+    // init from local state if previously set
+    (function initFromLocalState(){ const p=readPersistedEnd(); if(p){ if(p>Date.now()){ giveawayActive=true; giveawayEndAt=p; onGiveawayActivated(); } else { giveawayEnded=true; giveawayEndAt=p; onGiveawayEnded(); } } })();
+
+    /* ---------- YouTube OAuth subscription verification (client-side) ---------- */
+    // The flow: popup to Google's OAuth 2.0 endpoint (implicit token), request scope youtube.readonly.
+    // Then call subscriptions.list?part=id&forChannelId=YOUR_CHANNEL_ID&mine=true
+    // If any subscription returned -> verified
+    async function openOAuthPopup() {
+      return new Promise((resolve, reject) => {
+        if (!YOUTUBE_OAUTH_CLIENT_ID || YOUTUBE_OAUTH_CLIENT_ID.includes("REPLACE_WITH")) {
+          reject(new Error("YOUTUBE_OAUTH_CLIENT_ID not configured."));
+          return;
+        }
+        const scope = encodeURIComponent("https://www.googleapis.com/auth/youtube.readonly");
+        const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(YOUTUBE_OAUTH_CLIENT_ID)}&response_type=token&scope=${scope}&include_granted_scopes=true&prompt=consent`;
+        const w = 600, h = 700;
+        const left = (screen.width / 2) - (w / 2);
+        const top = (screen.height / 2) - (h / 2);
+        const popup = window.open(authUrl, "yt_verify_popup", `width=${w},height=${h},left=${left},top=${top}`);
+
+        if (!popup) { reject(new Error('Popup blocked')); return; }
+
+        const interval = setInterval(() => {
+          try {
+            if (!popup || popup.closed) { clearInterval(interval); reject(new Error('Popup closed')); return; }
+            const hash = popup.location.hash;
+            if (hash && hash.indexOf('access_token') !== -1) {
+              const params = new URLSearchParams(hash.slice(1));
+              const token = params.get('access_token');
+              const expiresIn = parseInt(params.get('expires_in') || '0', 10);
+              clearInterval(interval);
+              popup.close();
+              resolve({ access_token: token, expires_in: expiresIn });
+            }
+          } catch (err) {
+            // cross-origin errors while popup redirects - ignore
+          }
+        }, 500);
+      });
+    }
+
+    async function verifySubscriptionWithToken(accessToken) {
+      const url = `https://www.googleapis.com/youtube/v3/subscriptions?part=id&forChannelId=${YOUTUBE_CHANNEL_ID}&mine=true&maxResults=1`;
+      const res = await fetch(url, { headers: { Authorization: 'Bearer ' + accessToken } });
+      if (!res.ok) { const txt = await res.text(); throw new Error('YouTube API error: ' + res.status + ' ' + txt); }
+      const json = await res.json();
+      const subscribed = (json.items && json.items.length > 0);
+      return { ok: subscribed, raw: json };
+    }
+
+    // Hook verify button
+    let lastVerification = { ok: false, method: null, info: null };
+    document.getElementById('verifyBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('verifyBtn');
+      btn.disabled = true;
+      btn.textContent = 'Opening sign-in…';
+      try {
+        const tokenObj = await openOAuthPopup();
+        if (!tokenObj || !tokenObj.access_token) { throw new Error('No access token'); }
+        btn.textContent = 'Verifying…';
+        const result = await verifySubscriptionWithToken(tokenObj.access_token);
+        if (result.ok) {
+          lastVerification = { ok: true, method: 'oauth', info: 'verified' };
+          showFormMessage('Subscription verified — thank you! (You may now submit.)', true);
+        } else {
+          lastVerification = { ok: false, method: 'oauth', info: 'not subscribed' };
+          showFormMessage('Account signed in but no subscription to the channel was found. You may still enter (marked unverified).', false);
+        }
+      } catch (err) {
+        console.warn('Verification failed', err);
+        lastVerification = { ok: false, method: 'oauth', info: err.message || 'error' };
+        showFormMessage('Verification failed or cancelled. You may still submit but will be marked unverified.', false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Verify Subscription (Google Sign-in)';
+      }
+    });
+
+    /* ---------- Form submit: validate reCAPTCHA via Cloud Function, upload image to Firebase Storage, write Firestore doc ---------- */
+    const giveForm = document.getElementById('giveForm');
+    const formMessage = document.getElementById('formMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showFormMessage(html, ok = true) {
+      formMessage.innerHTML = `<div class="alert" style="${ok ? '' : 'background: #5a1a1a;'}">${html}</div>`;
+    }
+
+    giveForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      if (giveawayEnded) { showFormMessage('Giveaway is over. Thank you.'); return; }
+
+      // collect values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const ytHandle = document.getElementById('ytHandle').value.trim();
+      const why = document.getElementById('why').value.trim();
+      const proofInput = document.getElementById('proof');
+
+      if (!name || !email || !ytHandle || !why) { showFormMessage('Please fill all required fields.', false); return; }
+      if (!proofInput.files || proofInput.files.length === 0) { showFormMessage('Please attach an image proof.', false); return; }
+      const file = proofInput.files[0];
+      if (!file.type.startsWith('image/')) { showFormMessage('Please upload an image file.', false); return; }
+      if (file.size > 10 * 1024 * 1024) { showFormMessage('Please use an image smaller than 10 MB.', false); return; }
+
+      // reCAPTCHA token
+      const recaptchaWidget = document.querySelector('.g-recaptcha');
+      // The reCAPTCHA script creates a global grecaptcha. We call getResponse to get token.
+      if (!(window.grecaptcha && grecaptcha.getResponse)) {
+        showFormMessage('reCAPTCHA not ready. Try reload.', false); return;
+      }
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        showFormMessage('Please complete the reCAPTCHA checkbox.', false); return;
+      }
+
+      submitBtn.disabled = true;
+      showFormMessage('Verifying reCAPTCHA and uploading your entry — please wait...');
+
+      try {
+        // 1) Verify recaptcha server-side via callable Cloud Function (recommended)
+        // We call a Firebase Callable Function you must deploy (code below).
+        const verifyRecaptcha = httpsCallable(functions, RECAPTCHA_FIREBASE_FUNCTION_NAME);
+        const verifyRes = await verifyRecaptcha({ token: recaptchaResponse });
+        const verifyData = verifyRes.data || {};
+        if (!verifyData.success) {
+          showFormMessage('reCAPTCHA verification failed. Try again.', false);
+          grecaptcha.reset();
+          submitBtn.disabled = false;
+          return;
+        }
+
+        // 2) Upload image to Storage
+        const filename = `${Date.now()}_${Math.random().toString(36).slice(2,9)}_${file.name.replace(/\s+/g,'_')}`;
+        const sRef = storageRef(storage, `giveaway_proofs/${filename}`);
+        const uploadTask = uploadBytesResumable(sRef, file);
+
+        await new Promise((resolve, reject) => {
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              // could show progress (optional)
+            },
+            (err) => reject(err),
+            () => resolve()
+          );
+        });
+        const downloadURL = await getDownloadURL(sRef);
+
+        // 3) Save entry doc
+        const doc = {
+          name, email, ytHandle, why,
+          proofStoragePath: sRef.fullPath,
+          proofUrl: downloadURL,
+          verified: lastVerification.ok === true,
+          verifyMethod: lastVerification.method || null,
+          verifyInfo: lastVerification.info || null,
+          recaptchaVerified: true,
+          createdAt: serverTimestamp()
+        };
+
+        const docRef = await addDoc(collection(db, "giveaway_entries"), doc);
+
+        showFormMessage('Thanks — your entry was submitted successfully.', true);
+        giveForm.reset();
+        grecaptcha.reset();
+      } catch (err) {
+        console.error('Submit error', err);
+        showFormMessage('Submission failed: ' + (err && err.message ? err.message : 'Unknown error'), false);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    // small helper message UI
+    function showFormMessageInline(msg, ok=true){ showFormMessage(msg, ok); }
+
+    // Theme toggle
     const themeToggle = document.getElementById("themeToggle");
     const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === "light") {
-      document.body.classList.add("light");
-      themeToggle.textContent = "🌞";
-    }
+    if (currentTheme === "light") { document.body.classList.add("light"); themeToggle.textContent = "🌞"; }
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("light");
       const isLight = document.body.classList.contains("light");
       themeToggle.textContent = isLight ? "🌞" : "🌙";
       localStorage.setItem("theme", isLight ? "light" : "dark");
     });
-	
-	// Mobile menu toggle
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
 
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+    // Cleanup intervals on unload
+    window.addEventListener('beforeunload', () => {
+      if (window.__yt_interval) clearInterval(window.__yt_interval);
+      if (countdownInterval) clearInterval(countdownInterval);
     });
 
-
-    const apiKey = 'AIzaSyDsYoWGvOWkuKdbuPBWHPRzZQ8V_Kru1eU';
-    const channelId = 'UC5kX1Pt3qBdjmykufvqsWZw';
-
-    const countElement = document.getElementById('subscriber-count');
-    const loader = document.getElementById('loader');
-    const errorElement = document.getElementById('error');
-    let currentCount = 0;
-
-    async function fetchSubscriberCount() {
-      loader.style.display = 'block';
-      countElement.style.display = 'none';
-      errorElement.style.display = 'none';
-
-      try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
-        if (!response.ok) throw new Error("Network error or invalid key");
-        const data = await response.json();
-
-        const newCount = parseInt(data.items[0].statistics.subscriberCount, 10);
-        animateCountUp(countElement, currentCount, newCount);
-        currentCount = newCount;
-
-        loader.style.display = 'none';
-        countElement.style.display = 'block';
-
-        updateGiveawayStatus(newCount);
-      } catch (error) {
-        console.error("Fetch error:", error);
-        loader.style.display = 'none';
-        errorElement.style.display = 'block';
-      }
-    }
-
-    function animateCountUp(element, start, end, duration = 1000) {
-      const range = end - start;
-      const startTime = performance.now();
-      function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const value = Math.floor(start + range * progress);
-        element.textContent = value.toLocaleString();
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      }
-      requestAnimationFrame(update);
-    }
-
-    // Giveaway Logic
-    const giveawayStatus = document.getElementById("giveaway-status");
-    const subsToGo = document.getElementById("subs-to-go");
-    const giveawayTimer = document.getElementById("giveaway-timer");
-    const timerEl = document.getElementById("timer");
-    const giveawayEndMessage = document.getElementById("giveaway-ended-message");
-
-    const GIVEAWAY_THRESHOLD = 100;
-    const GIVEAWAY_DURATION_MS = 14 * 24 * 60 * 60 * 1000;
-    let giveawayStartTime = null;
-
-    if (localStorage.getItem("giveawayStartTime")) {
-      giveawayStartTime = parseInt(localStorage.getItem("giveawayStartTime"), 10);
-    }
-
-    function updateGiveawayStatus(count) {
-      const subsToGoEl = document.getElementById("subs-to-go");
-      const subsNeededEl = document.getElementById("subs-needed");
-
-      const remaining = GIVEAWAY_THRESHOLD - count;
-
-      if (count < GIVEAWAY_THRESHOLD) {
-        subsToGoEl.textContent = `${remaining} subscribers to unlock the giveaway`;
-        subsNeededEl.textContent = remaining;
-      } else {
-        subsToGoEl.textContent = `🎉 Giveaway unlocked!`;
-        subsNeededEl.textContent = "0";
-        if (!giveawayStartTime) {
-          giveawayStartTime = Date.now();
-          localStorage.setItem("giveawayStartTime", giveawayStartTime);
-        }
-        startGiveawayCountdown();
-      }
-    }
-
-    fetchSubscriberCount();
-  </script>
-  <script>
-    let isVerified = false;
-
-    // Grab elements
-    const verifyButton = document.querySelector('button[type="button"]');
-    const enterButton = document.querySelector('button[type="submit"]');
-    const form = enterButton.closest('form');
-
-    // Create and insert error message
-    const verifyError = document.createElement('div');
-    verifyError.style.color = '#ff4c4c';
-    verifyError.style.fontSize = '14px';
-    verifyError.style.marginTop = '10px';
-    verifyError.style.display = 'none';
-    verifyError.textContent = '⚠ Please verify your subscription before entering the giveaway.';
-    enterButton.parentElement.insertBefore(verifyError, enterButton);
-
-    // On Verify Subscription button click
-    verifyButton.addEventListener('click', () => {
-      isVerified = true;
-      verifyError.style.display = 'none'; // hide error if it was shown
-      // Redirect to your YouTube channel
-      window.open('https://www.youtube.com/channel/UC5kX1Pt3qBdjmykufvqsWZw?sub_confirmation=1', '_blank');
-    });
-
-    // Intercept form submit
-    form.addEventListener('submit', function (e) {
-      if (!isVerified) {
-        e.preventDefault(); // stop form submission
-        verifyError.style.display = 'block';
-      }
-    });
+    // Activate giveaway state from localStorage if needed
+    activateGiveawayIfNeeded();
   </script>
 </body>
 </html>
-
-
-
-
-
 
 
 
