@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT SPEAK – Contact</title>
+  <link rel="icon" type="image/png" href="channel_logo.png">
+  <style>
+    @font-face {
+      font-family: 'HelloKetta';
+      src: url('HelloKetta-d99oX.ttf') format('truetype');
+    }
+
+    h2 {
+      font-family: 'HelloKetta', sans-serif;
+      font-size: 60px;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #1e1e1e;
+      color: #cccccc;
+    }
+
+    body.light {
+      background: #ffffff;
+      color: #1e1e1e;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #000;
+      padding: 10px 20px;
+    }
+
+    body.light header {
+      background: #ffffff;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ff3d00;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    #themeToggle {
+      font-size: 24px;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .contact-wrapper {
+      width: 100%;
+    }
+
+    body.light .contact-wrapper {
+      background-color: #e0e0e0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    input[type="submit"] {
+      background: #ff5722;
+      color: #fff;
+      cursor: pointer;
+      padding: 12px;
+      font-size: 1.1em;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+
+    body.light footer {
+      background: #f0f0f0;
+      color: #444;
+    }
+
+    footer a {
+      color: #ff5722;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="channel_logo.png" alt="IT SPEAK Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shorts.html">Shorts</a>
+      <a href="videos.html">Videos</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <span id="themeToggle">🌙</span>
+    </nav>
+  </header>
+
+  <div class="contact-wrapper">
+    <section class="section">
+      <h2>Contact</h2>
+      <form action="https://formspree.io/f/mdkdpegl" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <input type="submit" value="Send Message">
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 IT SPEAK. All rights reserved.</p>
+    <p>Follow us on <a href="https://www.youtube.com/channel/UC5kX1Pt3qBdjmykufvqsWZw">YouTube</a></p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const currentTheme = localStorage.getItem("theme");
+
+    if (currentTheme === "light") {
+      document.body.classList.add("light");
+      themeToggle.textContent = "🌞";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      themeToggle.textContent = isLight ? "🌞" : "🌙";
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>

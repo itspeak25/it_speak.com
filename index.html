@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IT SPEAK – Home</title>
+  <link rel="icon" type="image/png" href="channel_logo.png">
+  <style>
+    @font-face {
+      font-family: 'BasheqVintageDemoVersionRegular';
+      src: url('BasheqVintageDemoVersionRegular-ov13x.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'HelloKetta';
+      src: url('HelloKetta-d99oX.ttf') format('truetype');
+    }
+
+    :root {
+      --bg: #1e1e1e;
+      --muted: #cccccc;
+      --accent: #ff3d00;
+      --panel: rgba(0, 0, 0, 0.35);
+      --card-grad: linear-gradient(135deg,#2d2d2d 0%, #141414 100%);
+    }
+
+    body.light {
+      --bg:#ffffff;
+      --muted:#222222;
+      --panel:rgba(255,255,255,0.65);
+      --card-grad:linear-gradient(135deg,#fff 0%,#f5f5f5 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      transition:background .3s ease, color .3s ease;
+      overflow-x:hidden;
+    }
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:#000;
+      padding:10px 20px;
+    }
+
+    body.light header {
+      background:#f5f5f5;
+    }
+
+    header img {
+      height:50px;
+      display:block;
+    }
+
+    nav a {
+      color:var(--accent);
+      margin-left:18px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .hero {
+      background:linear-gradient(45deg,#f44336,#ff5722);
+      padding:60px 20px;
+      text-align:center;
+      color:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+
+    .hero h1 {
+      font-size:4rem;
+      margin:0 0 8px;
+      font-weight:700;
+    }
+
+    .hero h2 {
+      margin:0;
+      opacity:.95;
+      font-size:3rem;
+    }
+
+    footer {
+      margin-top:40px;
+      background:#111;
+      text-align:center;
+      padding:20px;
+      color:#666;
+    }
+
+    body.light footer {
+      background:#f0f0f0;
+      color:#333;
+    }
+
+    footer a {
+      color:#ff5722;
+      text-decoration:none;
+    }
+
+    h1 {
+      font-family: 'BasheqVintageDemoVersionRegular', sans-serif;
+      font-size: 65px;
+    }
+
+    h2 {
+      font-family: 'HelloKetta', sans-serif;
+      font-size: 70px;
+    }
+
+    @keyframes countUp {
+      from { opacity: 0.2; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #subscriber-count {
+      transition: all 0.5s ease-in-out;
+      animation: countUp 0.4s ease-out;
+    }
+
+    .loader {
+      border: 6px solid rgba(255,255,255,0.1);
+      border-top: 6px solid var(--accent);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      color: #ff4c4c;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="channel_logo.png" alt="IT SPEAK Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shorts.html">Shorts</a>
+      <a href="videos.html">Videos</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <span id="themeToggle" style="font-size: 24px; cursor: pointer; margin-left: 20px;">🌙</span>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to IT SPEAK</h1>
+    <h2>Your Hub For Insightful Tech Videos & Shorts</h2>
+  </div>
+
+  <!-- Live Subscriber Count Box -->
+  <div id="subscriber-box" style="text-align: center; margin: 40px auto; max-width: 400px;">
+    <h2 style="color: var(--accent); margin-bottom: 10px;">Live Subscriber Count</h2>
+    <div style="background: var(--card-grad); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+      <div id="loader" class="loader"></div>
+      <div id="subscriber-count" style="font-size: 64px; font-weight: bold; display: none;">0</div>
+      <div style="font-size: 18px; color: var(--muted); margin-top: 8px;">SUBSCRIBERS</div>
+      <div id="error" class="error-message">⚠ Unable to load subscriber count. Check your connection or API key.</div>
+    </div>
+  </div>
+
+  <!-- 🎁 Mystery Mouse Giveaway Section -->
+  <div style="max-width: 1000px; margin: 60px auto; display: flex; flex-wrap: wrap; gap: 30px; background: var(--panel); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+
+    <!-- Left Column -->
+    <div style="flex: 1; min-width: 280px; text-align: center;">
+      <img src="mystery_mouse.png" alt="Mystery Mouse" style="width: 120px; margin-bottom: 20px;" />
+      <h2 style="font-family: 'BasheqVintageDemoVersionRegular'; font-size: 26px; color: var(--muted); margin-bottom: 10px;">Mystery Mouse Giveaway</h2>
+      <p style="font-size: 16px; color: var(--muted); line-height: 1.5;">Hit <strong style="color: var(--accent);">100 subscribers</strong> to officially activate and start the 2-week countdown.<br>Sign-ups are open now.</p>
+
+      <div id="subs-to-go-box" style="margin: 20px auto 10px; background: #111; color: var(--accent); font-weight: bold; padding: 12px 20px; border-radius: 40px; width: fit-content;">
+        <span id="subs-to-go">Loading...</span>
+      </div>
+
+      <div style="font-size: 14px; color: var(--muted);">Subscribers needed: <span id="subs-needed">--</span></div>
+
+      <div id="giveaway-timer" style="margin-top: 20px; font-size: 14px; color: var(--accent); display: none;">
+        Giveaway ends in: <span id="timer"></span>
+      </div>
+
+      <div id="giveaway-ended-message" style="margin-top: 20px; font-size: 14px; color: var(--muted); display: none;">
+        🎉 The giveaway has ended! The winner will be announced soon on this website and in an upcoming YouTube video.
+      </div>
+    </div>
+
+    <!-- Right Column (Form) -->
+    <div style="flex: 1; min-width: 280px;">
+      <h3 style="color: var(--muted); margin-bottom: 10px;">Sign up to enter</h3>
+      <p style="font-size: 14px; color: var(--muted); margin-bottom: 20px;">Form is <strong style="color: green;">enabled</strong>. All fields are required to enter.</p>
+
+      <form action="https://formspree.io/f/xkgzpjla" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+        <label for="emailInput" style="color: var(--muted); font-weight: 600;">Email</label>
+        <div style="display: flex; gap: 10px;">
+          <input id="emailInput" name="email" type="email" placeholder="you@example.com" required style="flex: 1; padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;" />
+        </div>
+
+        <label for="ytHandle" style="color: var(--muted); font-weight: 600;">YouTube handle</label>
+        <input id="ytHandle" name="youtube_handle" type="text" placeholder="@yourchannel" required style="padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;" />
+        <small style="color: var(--muted); margin-top: -8px;">Required — used for verification & records.</small>
+
+        <label for="why" style="color: var(--muted); font-weight: 600;">Why do you want to win?</label>
+        <textarea id="why" name="reason" placeholder="Tell us in a sentence..." rows="3" style="padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;"></textarea>
+
+        <button type="button" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Verify Subscription (Google Sign-in)</button>
+        <small style="color: var(--muted); margin-top: -8px;">Click to verify your subscription to my channel. If you don't verify, you may still enter but will be marked unverified.</small>
+
+        <button type="submit" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Enter Giveaway</button>
+        <small style="color: var(--muted);">Your submission will be uploaded on to a Secure Database.</small>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 IT SPEAK. All rights reserved.</p>
+    <p>Follow us on <a href="https://www.youtube.com/channel/UC5kX1Pt3qBdjmykufvqsWZw">YouTube</a></p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "light") {
+      document.body.classList.add("light");
+      themeToggle.textContent = "🌞";
+    }
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      themeToggle.textContent = isLight ? "🌞" : "🌙";
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+
+    const apiKey = 'AIzaSyDsYoWGvOWkuKdbuPBWHPRzZQ8V_Kru1eU';
+    const channelId = 'UC5kX1Pt3qBdjmykufvqsWZw';
+
+    const countElement = document.getElementById('subscriber-count');
+    const loader = document.getElementById('loader');
+    const errorElement = document.getElementById('error');
+    let currentCount = 0;
+
+    async function fetchSubscriberCount() {
+      loader.style.display = 'block';
+      countElement.style.display = 'none';
+      errorElement.style.display = 'none';
+
+      try {
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
+        if (!response.ok) throw new Error("Network error or invalid key");
+        const data = await response.json();
+
+        const newCount = parseInt(data.items[0].statistics.subscriberCount, 10);
+        animateCountUp(countElement, currentCount, newCount);
+        currentCount = newCount;
+
+        loader.style.display = 'none';
+        countElement.style.display = 'block';
+
+        updateGiveawayStatus(newCount);
+      } catch (error) {
+        console.error("Fetch error:", error);
+        loader.style.display = 'none';
+        errorElement.style.display = 'block';
+      }
+    }
+
+    function animateCountUp(element, start, end, duration = 1000) {
+      const range = end - start;
+      const startTime = performance.now();
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(start + range * progress);
+        element.textContent = value.toLocaleString();
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    // Giveaway Logic
+    const giveawayStatus = document.getElementById("giveaway-status");
+    const subsToGo = document.getElementById("subs-to-go");
+    const giveawayTimer = document.getElementById("giveaway-timer");
+    const timerEl = document.getElementById("timer");
+    const giveawayEndMessage = document.getElementById("giveaway-ended-message");
+
+    const GIVEAWAY_THRESHOLD = 100;
+    const GIVEAWAY_DURATION_MS = 14 * 24 * 60 * 60 * 1000;
+    let giveawayStartTime = null;
+
+    if (localStorage.getItem("giveawayStartTime")) {
+      giveawayStartTime = parseInt(localStorage.getItem("giveawayStartTime"), 10);
+    }
+
+    function updateGiveawayStatus(count) {
+      const subsToGoEl = document.getElementById("subs-to-go");
+      const subsNeededEl = document.getElementById("subs-needed");
+
+      const remaining = GIVEAWAY_THRESHOLD - count;
+
+      if (count < GIVEAWAY_THRESHOLD) {
+        subsToGoEl.textContent = `${remaining} subscribers to unlock the giveaway`;
+        subsNeededEl.textContent = remaining;
+      } else {
+        subsToGoEl.textContent = `🎉 Giveaway unlocked!`;
+        subsNeededEl.textContent = "0";
+        if (!giveawayStartTime) {
+          giveawayStartTime = Date.now();
+          localStorage.setItem("giveawayStartTime", giveawayStartTime);
+        }
+        startGiveawayCountdown();
+      }
+    }
+
+    fetchSubscriberCount();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

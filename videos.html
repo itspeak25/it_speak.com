@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT SPEAK – Videos</title>
+  <link rel="icon" type="image/png" href="channel_logo.png">
+
+  <style>
+    @font-face {
+      font-family: 'HelloKetta';
+      src: url('HelloKetta-d99oX.ttf') format('truetype');
+    }
+
+    :root { --bg:#1e1e1e;--text:#ccc;--hdr:#000;--ftr:#111;--accent:#ff3d00; }
+    body.light { --bg:#fff;--text:#111;--hdr:#f1f1f1;--ftr:#f5f5f5; }
+    body { margin:0;font-family:sans-serif;background:var(--bg);color:var(--text);transition:.3s; }
+
+    h2 {
+      font-family: 'HelloKetta', sans-serif;
+      font-size: 60px;
+    }
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:var(--hdr);
+      padding:10px 20px;
+      transition:.3s;
+    }
+
+    header img { height:50px; }
+    nav a { color: var(--accent); margin-left:20px; text-decoration:none; }
+    .theme-toggle { font-size:22px; margin-left:20px; cursor:pointer; }
+    .hero-image { width:100%;height:300px;background:url('banner.png') center/cover; }
+    .section { padding:40px 20px; max-width:1000px; margin:auto; }
+    .video-grid { display:flex;flex-direction:column;gap:40px; }
+    .video-wrapper { opacity:0; transform:translateY(20px); transition:opacity .8s, transform .8s; }
+    .video-wrapper.visible { opacity:1; transform:translateY(0); }
+    .video-wrapper iframe { width:100%;height:315px;border:none; }
+    .video-title { margin-top:10px;font-size:1rem; }
+    #load-more {
+      margin-top:20px;
+      padding:10px 20px;
+      background:var(--accent);
+      color:white;
+      border:none;
+      cursor:pointer;
+    }
+    #spinner {
+      display:none;
+      margin:20px auto;
+      border:6px solid #ccc;
+      border-top:6px solid var(--accent);
+      border-radius:50%;
+      width:40px;
+      height:40px;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin { to{transform:rotate(360deg);} }
+    #scrollTopBtn {
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:10px 15px;
+      border-radius:5px;
+      cursor:pointer;
+      display:none;
+    }
+    footer {
+      background: var(--ftr);
+      text-align:center;
+      padding:20px;
+      color:#666;
+      transition:.3s;
+    }
+    footer a { color:#ff5722;text-decoration:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="channel_logo.png" alt="IT SPEAK Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shorts.html">Shorts</a>
+      <a href="videos.html">Videos</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <span id="themeToggle" class="theme-toggle" title="Toggle Theme">🌙</span>
+    </nav>
+  </header>
+
+  <section class="hero-image"></section>
+  <section class="section">
+    <h2>Most Popular Videos</h2>
+    <div id="video-grid" class="video-grid"></div>
+    <div id="spinner"></div>
+    <button id="load-more">Load More</button>
+  </section>
+
+  <button id="scrollTopBtn">Top</button>
+
+  <footer>
+    <p>&copy; 2025 IT SPEAK. All rights reserved.</p>
+    <p>Follow us on <a href="https://www.youtube.com/@it_speak/videos">YouTube</a></p>
+  </footer>
+
+  <script>
+    const videos = [
+      { id:'WCWzHx0Gd2k?si=TbVTvNw317Fg1oPn', title:'How to Fix “Your IT Administrator Has Limited Access” (Windows Defender)' },
+      { id:'xmpQrMOK_cY?si=x1j44n6ExtTAJ7zc', title:'Unboxing the Xplore Smart Bracelet XP‑1505' },
+      { id:'9S6y44_XDSA?si=2AaGTOH1-_-JPG4T', title:'How To Fix System Service Exception Error in 3 Minutes!🤔' },
+      { id:'geE1pbjAnIQ?si=vV0anuswKLNCpuQW', title:'How to fix "Windows Hello Not Working" error in Windows 10! 👋' },
+      { id:'2t35pA-TX0I?si=BIla0mtbmKGFcPCc', title:'How To Get Windows 10 Product Key for FREE! 😍😃😄😉' },
+      { id:'aROjf70I1ek?si=M0IqHLeUfMs9T-V-', title:'How To Fix Microsoft Store Not Working! 👜' },
+      { id:'96aIZpyW5pQ?si=FbfBYmVooQTTeOHQ', title:'How To Download Aptoide For Your Tablet or Phone' },
+      { id:'lY0JrQF9f-w?si=ACwDWN5DCdvX7Lxe', title:'[SPECIAL] Minecraft NASA International Space Station Tour' },
+      { id:'FYcBmpRIc6I?si=dYtUUy6lPqbK0XbY', title:'Bluestacks is not working for you? I got the perfect solution! 😍' },
+      { id:'eXJb34pEJF0?si=TIvYYsR7FVVzpkIL', title:'My New Intro 😃' },
+      { id:'e5Lp0b7_Uh8?si=Cd5ul7iHZ4wUfMyH', title:'How To Make Your PC Faster - Part 1 🔥👌💻⚡' },
+      { id:'f6aEuAq4Vvg?si=VDi6cAGRl9ScgjxC', title:'How to make a Minecraft Time Machine in Seconds! 💻😃' },
+      { id:'IAhr-FlBeGA?si=k5f62jq0Pg5cuu5c', title:'Unboxing The BEST Gel Mouse Pad Ever! 😍💪' },
+      { id:'6IYBugWSfrY?si=FqJ1weZ6ioycWkKJ', title:'Welcome to IT Speak YouTube Channel! 🔥💻' },
+      { id:'9h0tOWFa2Zk?si=HnF5eFwQOjW_wknS', title:'Amazon Echo Dot (4th gen) Review' },
+      { id:'_vVgF5Fmaak?si=Yn4_x-fVNaoaH43j', title:'How To Make Your PC Faster - Part 2' },
+      { id:'SHNt0hS0RRo?si=1_o2AZtlS56oGVla', title:'How to make yourself look good on online meetings! 😍' },
+      { id:'_wWagvQJqa4?si=T1mPHXKKJ31GqdSj', title:'How To Get COOL 4K Backgrounds In Your Tablet Or Phone In 3 Minutes!!🤑' },
+      { id:'l77owl_fy7g?si=-yJN13TOe5FPltqi', title:'How to Activate Hibernate Mode in less than 1 minute! 😱' },
+      { id:'5W5_lAGqKqA?si=PE2ugqJ-jlpmUExq', title:'Computer Freeze or Lag Fix 💻#computer #lagging #freezing' },
+      { id:'km69NbXlkYo?si=t4iYeMjrrLJxAOWW', title:'Unboxing A Cute Wireless Mouse! 🐭' },
+      { id:'DvNYuyl-AmE?si=YwQ6EUh6DhErlkzr', title:'The Best Anti-Virus Software Ever! 😍' },
+      { id:'5UHBQAnoe4s?si=BCphSXOpRq0VAEfj', title:'Windows Hello Does Not Work For You? GOT A SOLUTION!!! 👌🔥💻😍😎' },
+      { id:'UhNYPt3BFSk?si=fq5Sieckyam2sdh9', title:'How To Make A Free Microsoft Teams Account! 🔥💻👌👨‍🏫' },
+      { id:'NZxEFXLtbOA?si=0vZcUbJ5262cgs_D', title:'How To Install Windows 11? 😍' }
+    ];
+
+    const grid = document.getElementById('video-grid'),
+          loadMore = document.getElementById('load-more'),
+          spin = document.getElementById('spinner'),
+          scrollBtn = document.getElementById('scrollTopBtn'),
+          themeToggle = document.getElementById('themeToggle');
+
+    let index = 0, batch = 5;
+
+    function addBatch() {
+      spin.style.display = 'block';
+      loadMore.disabled = true;
+
+      setTimeout(() => {
+        for (let i = index; i < index + batch && i < videos.length; i++) {
+          const v = videos[i];
+          const wrapper = document.createElement('div');
+          wrapper.className = 'video-wrapper';
+
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube.com/embed/${v.id}`;
+          iframe.title = v.title;
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.allowFullscreen = true;
+          iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+          const title = document.createElement('div');
+          title.className = 'video-title';
+          title.textContent = v.title;
+
+          wrapper.appendChild(iframe);
+          wrapper.appendChild(title);
+          grid.appendChild(wrapper);
+        }
+
+        index += batch;
+        if (index >= videos.length) loadMore.style.display = 'none';
+        spin.style.display = 'none';
+        loadMore.disabled = false;
+        observeWrappers();
+      }, 400);
+    }
+
+    loadMore.addEventListener('click', addBatch);
+    window.addEventListener('DOMContentLoaded', addBatch);
+
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    scrollBtn.addEventListener('click', () =>
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    );
+
+    function setTheme(t) {
+      if (t === 'light') {
+        document.body.classList.add('light');
+        themeToggle.textContent = '☀️';
+      } else {
+        document.body.classList.remove('light');
+        themeToggle.textContent = '🌙';
+      }
+      localStorage.setItem('theme', t);
+    }
+
+    themeToggle.addEventListener('click', () =>
+      setTheme(document.body.classList.contains('light') ? 'dark' : 'light')
+    );
+
+    setTheme(localStorage.getItem('theme') || 'dark');
+
+    function observeWrappers() {
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            o.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.video-wrapper').forEach(w => obs.observe(w));
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

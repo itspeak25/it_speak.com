@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT SPEAK – YouTube</title>
+  <link rel="icon" type="image/png" href="channel_logo.png">
+  <style>
+    body { margin:0; font-family:sans-serif; background:#1e1e1e; color:#cccccc; }
+    header { display:flex; align-items:center; justify-content:space-between; background:#000; padding:10px 20px; }
+    header img { height:50px; }
+    nav a { color:#ff3d00; margin-left:20px; text-decoration:none; }
+    .hero { background:linear-gradient(45deg,#f44336,#ff5722); padding:60px 20px; text-align:center; color:#fff; }
+    .hero h1 { font-size:3em; margin:0; }
+    .section { padding:40px 20px; max-width:1000px; margin:auto; }
+    .video-grid, .shorts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+    iframe { width:100%; height:300px; }
+    .shorts-grid iframe { height:500px; }
+    form { display:flex; flex-direction:column; gap:15px; max-width:500px; margin:auto; }
+    input, textarea { padding:10px; border:none; border-radius:5px; font-size:1em; }
+    input[type="submit"] { background:#ff5722; color:#fff; cursor:pointer; border:none; padding:12px; font-size:1.1em; }
+    footer { background:#111; text-align:center; padding:20px; color:#666; }
+    footer a { color:#ff5722; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="channel_logo.png" alt="IT SPEAK Logo">
+    <nav>
+      <a href="#videos">Videos</a>
+      <a href="#shorts">Shorts</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to IT SPEAK</h1>
+    <p>Your hub for insightful tech videos & shorts</p>
+  </div>
+
+  <section class="section" id="videos">
+    <h2>Latest Videos</h2>
+    <div class="video-grid">
+      <!-- Embed your latest video IDs here -->
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="section" id="shorts">
+    <h2>Shorts</h2>
+    <div class="shorts-grid">
+      <!-- Embed your Shorts video IDs here -->
+      <iframe src="https://www.youtube.com/embed/SHORT_ID_1?autoplay=0" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/SHORT_ID_2?autoplay=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About IT SPEAK</h2>
+    <p>IT SPEAK is a tech YouTube channel focused on delivering quick, insightful videos and Shorts to help you understand the ever-evolving tech world. Tutorials, reviews, news—you'll find it here.</p>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <form action="YOUR_BACKEND_URL" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <input type="submit" value="Send Message">
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 IT SPEAK. All rights reserved.</p>
+    <p>Follow us on <a href="https://www.youtube.com/channel/UC5kX1Pt3qBdjmykufvqsWZw">YouTube</a></p>
+  </footer>
+</body>
+</html>
