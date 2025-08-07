@@ -160,8 +160,10 @@
     }
 
     /* Hide nav on mobile by default */
-    #mobile-menu.hidden {
-      display: none;
+    @media (max-width: 768px) {
+      #mobile-menu.hidden {
+        display: none;
+      }
     }
 
     /* Show hamburger and toggle nav on mobile */
@@ -198,7 +200,7 @@
   <header>
     <img src="channel_logo.png" alt="IT SPEAK Logo">
     <button id="menu-toggle" class="hamburger" aria-label="Toggle menu">☰</button>
-    <nav id="mobile-menu" class="hidden">
+    <nav id="mobile-menu">
       <a href="index.html">Home</a>
       <a href="shorts.html">Shorts</a>
       <a href="videos.html">Videos</a>
