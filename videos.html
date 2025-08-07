@@ -11,6 +11,11 @@
       font-family: 'HelloKetta';
       src: url('HelloKetta-d99oX.ttf') format('truetype');
     }
+	
+	@font-face {
+      font-family: 'MouldyCheeseRegular';
+      src: url('MouldyCheeseRegular-WyMWG.ttf') format('truetype');
+    }
 
     :root { --bg:#1e1e1e;--text:#ccc;--hdr:#000;--ftr:#111;--accent:#ff3d00; }
     body.light { --bg:#fff;--text:#111;--hdr:#f1f1f1;--ftr:#f5f5f5; }
@@ -20,6 +25,11 @@
       font-family: 'HelloKetta', sans-serif;
       font-size: 60px;
     }
+	
+	a {
+	  font-family: 'MouldyCheeseRegular', sans-serif;
+	  font-size: 20px;
+	}
 
     header {
       display:flex;
@@ -85,11 +95,11 @@
   <header>
     <img src="channel_logo.png" alt="IT SPEAK Logo">
     <nav>
-      <a href="index.html">Home</a>
-      <a href="shorts.html">Shorts</a>
-      <a href="videos.html">Videos</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" style="letter-spacing:2px">Home</a>
+      <a href="shorts.html" style="letter-spacing:2px">Shorts</a>
+      <a href="videos.html" style="letter-spacing:2px">Videos</a>
+      <a href="about.html" style="letter-spacing:2px">About</a>
+      <a href="contact.html" style="letter-spacing:2px">Contact</a>
       <span id="themeToggle" class="theme-toggle" title="Toggle Theme">🌙</span>
     </nav>
   </header>

@@ -10,9 +10,15 @@
       font-family: 'BasheqVintageDemoVersionRegular';
       src: url('BasheqVintageDemoVersionRegular-ov13x.ttf') format('truetype');
     }
+	
     @font-face {
       font-family: 'HelloKetta';
       src: url('HelloKetta-d99oX.ttf') format('truetype');
+    }
+	
+	@font-face {
+      font-family: 'MouldyCheeseRegular';
+      src: url('MouldyCheeseRegular-WyMWG.ttf') format('truetype');
     }
 
     :root {
@@ -116,7 +122,12 @@
       font-family: 'HelloKetta', sans-serif;
       font-size: 70px;
     }
-
+	
+	a {
+	  font-family: 'MouldyCheeseRegular', sans-serif;
+	  font-size: 20px;
+	}
+	
     @keyframes countUp {
       from { opacity: 0.2; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
@@ -201,11 +212,11 @@
     <img src="channel_logo.png" alt="IT SPEAK Logo">
     <button id="menu-toggle" class="hamburger" aria-label="Toggle menu">☰</button>
     <nav id="mobile-menu">
-      <a href="index.html">Home</a>
-      <a href="shorts.html">Shorts</a>
-      <a href="videos.html">Videos</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" style="letter-spacing:2px">Home</a>
+      <a href="shorts.html" style="letter-spacing:2px">Shorts</a>
+      <a href="videos.html" style="letter-spacing:2px">Videos</a>
+      <a href="about.html" style="letter-spacing:2px">About</a>
+      <a href="contact.html" style="letter-spacing:2px">Contact</a>
       <span id="themeToggle" style="font-size: 24px; cursor: pointer; margin-left: 20px;">🌙</span>
     </nav>
   </header>
