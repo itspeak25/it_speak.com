@@ -268,8 +268,8 @@
         <label for="why" style="color: var(--muted); font-weight: 600;">Why do you want to win?</label>
         <textarea id="why" name="reason" placeholder="Tell us in a sentence..." rows="3" style="padding: 10px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff;"></textarea>
 
-        <button type="button" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Verify Subscription (Google Sign-in)</button>
-        <small style="color: var(--muted); margin-top: -8px;">Click to verify your subscription to my channel. If you don't verify, you may still enter but will be marked unverified.</small>
+        <button type="button" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Verify Subscription</button>
+        <small style="color: var(--muted); margin-top: -8px;">Click to verify your subscription to my channel. If you don't verify, you will not be allowed to enter this giveaway.</small>
 
         <button type="submit" style="background: var(--accent); color: #fff; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Enter Giveaway</button>
         <small style="color: var(--muted);">Your submission will be uploaded on to a Secure Database.</small>
@@ -389,6 +389,39 @@
     }
 
     fetchSubscriberCount();
+  </script>
+  <script>
+    let isVerified = false;
+
+    // Grab elements
+    const verifyButton = document.querySelector('button[type="button"]');
+    const enterButton = document.querySelector('button[type="submit"]');
+    const form = enterButton.closest('form');
+
+    // Create and insert error message
+    const verifyError = document.createElement('div');
+    verifyError.style.color = '#ff4c4c';
+    verifyError.style.fontSize = '14px';
+    verifyError.style.marginTop = '10px';
+    verifyError.style.display = 'none';
+    verifyError.textContent = '⚠ Please verify your subscription before entering the giveaway.';
+    enterButton.parentElement.insertBefore(verifyError, enterButton);
+
+    // On Verify Subscription button click
+    verifyButton.addEventListener('click', () => {
+      isVerified = true;
+      verifyError.style.display = 'none'; // hide error if it was shown
+      // Redirect to your YouTube channel
+      window.open('https://www.youtube.com/channel/UC5kX1Pt3qBdjmykufvqsWZw?sub_confirmation=1', '_blank');
+    });
+
+    // Intercept form submit
+    form.addEventListener('submit', function (e) {
+      if (!isVerified) {
+        e.preventDefault(); // stop form submission
+        verifyError.style.display = 'block';
+      }
+    });
   </script>
 </body>
 </html>
