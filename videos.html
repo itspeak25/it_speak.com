@@ -89,12 +89,60 @@
       transition:.3s;
     }
     footer a { color:#ff5722;text-decoration:none; }
+	
+	/* Hide hamburger button by default */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: var(--accent);
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Hide nav on mobile by default */
+    @media (max-width: 768px) {
+      #mobile-menu.hidden {
+        display: none;
+      }
+    }
+
+
+    /* Show hamburger and toggle nav on mobile */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background-color: #000;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 999;
+      }
+
+      body.light nav {
+        background-color: #f5f5f5;
+      }
+
+      nav a {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <img src="channel_logo.png" alt="IT SPEAK Logo">
-    <nav>
+	<button id="menu-toggle" class="hamburger" aria-label="Toggle menu">☰</button>
+    <nav id="mobile-menu">
       <a href="index.html" style="letter-spacing:2px">Home</a>
       <a href="shorts.html" style="letter-spacing:2px">Shorts</a>
       <a href="videos.html" style="letter-spacing:2px">Videos</a>
@@ -121,7 +169,7 @@
 
   <script>
     const videos = [
-      { id:'WCWzHx0Gd2k?si=TbVTvNw317Fg1oPn', title:'How to Fix “Your IT Administrator Has Limited Access” (Windows Defender)' },
+      { id:'WCWzHx0Gd2k?si=McAkU9sy5fezvybm', title:'How to Fix “Your IT Administrator Has Limited Access” (Windows Defender)' },
       { id:'xmpQrMOK_cY?si=x1j44n6ExtTAJ7zc', title:'Unboxing the Xplore Smart Bracelet XP‑1505' },
       { id:'9S6y44_XDSA?si=2AaGTOH1-_-JPG4T', title:'How To Fix System Service Exception Error in 3 Minutes!🤔' },
       { id:'geE1pbjAnIQ?si=vV0anuswKLNCpuQW', title:'How to fix "Windows Hello Not Working" error in Windows 10! 👋' },
@@ -230,6 +278,14 @@
 
       document.querySelectorAll('.video-wrapper').forEach(w => obs.observe(w));
     }
+	
+	// Mobile menu toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
   </script>
 </body>
 </html>

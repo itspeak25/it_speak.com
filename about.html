@@ -126,13 +126,61 @@
 	  font-family: 'MouldyCheeseRegular', sans-serif;
 	  font-size: 20px;
 	}
+	
+	/* Hide hamburger button by default */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: var(--accent);
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Hide nav on mobile by default */
+    @media (max-width: 768px) {
+      #mobile-menu.hidden {
+        display: none;
+      }
+    }
+
+
+    /* Show hamburger and toggle nav on mobile */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background-color: #000;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 999;
+      }
+
+      body.light nav {
+        background-color: #f5f5f5;
+      }
+
+      nav a {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
     <img src="channel_logo.png" alt="IT SPEAK Logo">
-    <nav>
+    <button id="menu-toggle" class="hamburger" aria-label="Toggle menu">☰</button>
+    <nav id="mobile-menu">
       <a href="index.html" style="letter-spacing:2px">Home</a>
       <a href="shorts.html" style="letter-spacing:2px">Shorts</a>
       <a href="videos.html" style="letter-spacing:2px">Videos</a>
@@ -175,6 +223,14 @@
       const isLight = document.body.classList.contains("light");
       themeToggle.textContent = isLight ? "🌞" : "🌙";
       localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+	
+	// Mobile menu toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
     });
   </script>
 
